@@ -1,0 +1,41 @@
+.home img{
+    width: 100%;
+    border-radius: 0 0 200px 200px;
+}
+.home .para{
+    position: absolute;
+    bottom: 25%;
+    left: 70%;
+    color: white;
+    word-wrap: break-word;
+}
+.home .para h1{
+    font-size: 6rem;
+}
+.home .para p{
+    text-align: end     ;
+}
+
+.card-body .bi{
+    font-size: 5rem;
+    /* border: 1px solid black; */
+    border-radius: 47%;
+    padding: 3rem;
+    background-color: white;
+    /* color: blue; */
+}
+.card-body h5{
+    color: black;
+}
+.card-body h5:hover{
+    color: white;
+}
+.card-body .bi:hover{
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+.pdding{
+    padding-bottom: 170px;
+}
