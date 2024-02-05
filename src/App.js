@@ -1,30 +1,46 @@
-import Home from "./components/Home";
-import Navbar from "./components/Navbar";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
+import { useEffect, useState } from "react";
 
-} from "react-router-dom";
-import Services from "./components/Services";
-import Footer from "./components/Footer";
-import Contact from "./components/Contact";
-
-import './styles/Home.css'
 
 function App() {
+  const [color, setColor] = useState("green");
+  const [count, setCount] = useState(0);
+  const [car, setCar] = useState({
+    brand: "Ford",
+    model: "Mustang",
+    year: "1964",
+    color: "red"
+  });
+  function updatecar() {
+    setCar((pr)=>{
+      return {...pr, color:"blue"}
+    })
+  }
+  
+  // useEffect(()=>{
+  //   setTimeout(() => {
+  //     setCount((count)=>count+1)
+  //   }, 1000);
+  // },[])
+
+  useEffect(() => {
+    let timer = setTimeout(() => {
+    setCount((count) => count + 1);
+  }, 1000);
+
+  return () => clearTimeout(timer)
+  }, []);
   return (
-    <>
-     <Router>
-      <Navbar/>
-      <Routes>
-          <Route path="/" element={<Home/>}/>
-          <Route path="/services" element={<Services/>}/>
-          <Route path="/contact" element={<Contact/>}/>
-        </Routes>
-        <Footer/>
-     </Router>
-    </>
+<>
+  <h1>deepak {color}</h1>
+  <h1> {car.name}</h1>
+  <h1>My {car.brand}</h1>
+      <p>
+        It is a {car.color} {car.model} from {car.year}.
+      </p>
+      <h1>{count}</h1>
+  <button onClick={()=>{setColor("sky blue")}}>change name</button>
+  <button onClick={updatecar}>blue</button>
+</>
   );
 }
 
