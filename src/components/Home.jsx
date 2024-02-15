@@ -1,23 +1,36 @@
-import React,{useState} from 'react'
-import './home.css'
-
+import React,{useContext, useEffect, useState} from 'react'
+import { userContext } from '../App'
+import axios from 'axios';
 export default function Home() {
-  const onChanged=(e)=>{
- setCount(e.target.value)
-  }
-  const onAdd=(e)=>{
-    setCount(count+1)
-  }
-  const onMinus=()=>{
-    setCount(count-1)
-  }
-  const [count, setCount] = useState(0);
-  
+const [count ,setCount] =  useState(0)
+const [count1 ,setCount1] =  useState()
+
+useEffect(() => {
+ async function getData() {
+    const res = await axios.get(' https://pokeapi.co/api/v2/pokemon/')
+    setCount1(res.data.results[0].url)
+ }
+ getData()
+});
+let minusHandler = ()=>{
+  setCount(count-1)
+}
+let addHandler = ()=>{
+  setCount(count+1)
+}
+useEffect(() => {
+  // Update the document title using the browser API
+  document.title = `You clicked ${count} times`;
+},[count]);
+
+
   return (
     <>
-    <input type="number" onChange={onChanged} name="" id="" value={count} />
-    <button type="submit" onClick={onMinus}>Minus</button>
-    <button type="submit" onClick={onAdd}>Add</button>
+    <p>{count1}</p>
+    <a href= {count1} >link</a>
+    <input type="number" readOnly disabled  value={count}  name="" id=""/>
+    <button type="submit" onClick={minusHandler}>Minus</button>
+    <button type="submit" onClick={addHandler}>Add</button>
     </>
   )
 }
